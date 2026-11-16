@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Portfolio Styliste</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Jost',sans-serif;background:#F9F5EE;color:#111;line-height:1.6}
+h1,h2{font-family:'Playfair Display',serif}
+a{text-decoration:none;color:inherit}
+.login-wrap{background:linear-gradient(135deg,#111 0%,#2A1F0A 100%);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}
+.login-box{background:#fff;padding:38px 32px;border-radius:22px;width:100%;max-width:400px;text-align:center;box-shadow:0 25px 50px rgba(0,0,0,0.4);position:relative;overflow:hidden}
+.login-box:before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#C6A15B,#E8C87A)}
+.login-box h1{font-size:28px}
+.login-box h1 span{color:#C6A15B;font-style:italic}
+.login-box p{color:#777;font-size:14px;margin:5px 0}
+.login-box input{width:100%;padding:14px;border:1.5px solid #eee;border-radius:12px;margin:16px 0;background:#FFFBF5}
+.login-box input:focus{outline:none;border-color:#C6A15B}
+.login-btn{width:100%;background:linear-gradient(135deg,#D4AF6A,#C6A15B);border:none;padding:14px;border-radius:30px;font-weight:600;cursor:pointer;font-size:15px;box-shadow:0 8px 20px rgba(198,161,91,0.35)}
+.erreur{color:#721c24;background:#f8d7da;padding:10px;border-radius:10px;font-size:14px;display:none}
+.hint{font-size:12px;color:#999;margin-top:12px}
+header{background:#111;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;box-shadow:0 4px 15px rgba(0,0,0,0.2)}
+header .logo{font-family:'Playfair Display',serif;font-size:20px}
+header .logo span{color:#C6A15B;font-style:italic}
+header a{color:#E8C87A;font-size:14px}
+.container{max-width:1050px;margin:auto;padding:22px}
+.welcome{background:#111;color:#fff;padding:26px;border-radius:20px;margin:10px 0 18px;position:relative;overflow:hidden}
+.welcome:after{content:"";position:absolute;right:-30px;top:-30px;width:140px;height:140px;background:#C6A15B;border-radius:50%;opacity:0.25}
+.welcome h1{font-size:28px}
+.welcome h1 em{color:#E8C87A}
+.welcome p{color:#ccc;font-size:14px;position:relative;z-index:1}
+.stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:16px 0}
+.stat{background:#fff;padding:22px;border-radius:18px;border:1px solid #eee;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,0.05)}
+.stat b{font-size:30px;color:#C6A15B;display:block}
+.stat span{font-size:12px;letter-spacing:1px;color:#888}
+.btn{display:inline-block;background:linear-gradient(135deg,#D4AF6A,#C6A15B);color:#111;padding:10px 20px;border-radius:30px;font-weight:600;font-size:14px;border:none;cursor:pointer}
+.btn-red{color:#c00;font-size:13px;margin-left:10px}
+.card{background:#fff;border-radius:18px;padding:20px;margin-bottom:15px;border:1px solid #eee;box-shadow:0 6px 15px rgba(0,0,0,0.04)}
+.card p{color:#555;font-size:14px}
+.badge{background:#111;color:#E8C87A;padding:5px 12px;border-radius:20px;font-size:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.creation-img{width:100%;height:190px;object-fit:cover;border-radius:14px;margin-bottom:12px}
+.form-box{background:#fff;padding:26px;border-radius:18px;margin-top:10px;border:1px solid #eee}
+.form-box input,.form-box select,.form-box textarea{width:100%;padding:13px;border:1.5px solid #eee;border-radius:12px;margin-bottom:13px;font-family:inherit;background:#FFFBF5}
+.tabs{display:flex;gap:10px;margin:20px 0;flex-wrap:wrap}
+.tab{padding:11px 22px;border-radius:30px;border:1px solid #ddd;background:#fff;cursor:pointer;font-weight:500}
+.tab.active{background:#111;color:#E8C87A;border-color:#111}
+.section-page{display:none}
+.section-page.active{display:block}
+.success{background:#d4edda;padding:12px;border-radius:10px;color:#155724;margin-bottom:12px;display:none}
+@media(max-width:700px){.grid,.stat-row{grid-template-columns:1fr}header{flex-direction:column;gap:8px;text-align:center}}
+</style>
+</head>
+<body>
+<div id="pageLogin" class="login-wrap"><div class="login-box"><h1>Portfolio <span>Styliste</span></h1><p>Espace Admin - Connexion securisee</p><p class="erreur" id="erreurLogin">Mot de passe incorrect.</p><form id="formLogin"><input type="password" id="mdp" placeholder="Mot de passe admin" required><button class="login-btn" type="submit">Se connecter</button></form><p style="margin-top:15px;"><a href="index.html" style="color:#C6A15B;font-size:13px;">← Retour au site</a></p><p class="hint">Apercu : mot de passe admin123</p></div></div>
+<div id="pageAdmin" style="display:none;">
+<header><div class="logo">Portfolio <span>Styliste</span> - Admin</div><div><a href="#" onclick="showPage('ajouter')">+ Ajouter une creation</a> &nbsp; | &nbsp; <a href="#" onclick="logout()">Deconnexion</a></div></header>
+<div class="container">
+<div class="welcome"><h1>Bonjour, bienvenue <em>dans ton Admin</em></h1><p>Gere tes messages et tes creations facilement, sans toucher au code.</p></div>
+<div class="stat-row"><div class="stat"><b>3</b><span>MESSAGES RECUS</span></div><div class="stat"><b>6</b><span>CREATIONS</span></div><div class="stat"><b>12</b><span>COMMANDES CE MOIS</span></div></div>
+<div class="tabs"><button class="tab active" data-page="messages" onclick="showPage('messages')">Messages recus</button><button class="tab" data-page="creations" onclick="showPage('creations')">Mes Creations</button><button class="tab" data-page="ajouter" onclick="showPage('ajouter')">+ Ajouter une creation</button></div>
+<div id="sec-messages" class="section-page active"><h2>Messages recus via Contact</h2><br>
+<div class="card"><p><strong>Aminata K.</strong> <span class="badge">Robe de soiree</span></p><p>WhatsApp : +229 96 12 34 56 - Le 15-11-2026 a 10:24</p><p style="margin-top:8px;">Bonjour, je veux une robe de soiree doree pour un mariage le 20 decembre. C'est possible ? Mon budget est de 40.000 FCFA.</p><p style="margin-top:12px;"><a class="btn" href="#">Repondre sur WhatsApp</a> <a class="btn-red" href="#" onclick="return confirm('Supprimer ce message ?')">Supprimer</a></p></div>
+<div class="card"><p><strong>Chantal M.</strong> <span class="badge">Ensemble Bazin</span></p><p>WhatsApp : +229 95 78 90 12 - Le 14-11-2026 a 18:05</p><p style="margin-top:8px;">Je veux un ensemble Bazin riche pour la ceremonie de ma soeur. Vous faites la livraison a Porto-Novo ?</p><p style="margin-top:12px;"><a class="btn" href="#">Repondre sur WhatsApp</a> <a class="btn-red" href="#" onclick="return confirm('Supprimer ce message ?')">Supprimer</a></p></div>
+<div class="card"><p><strong>Jean-Marc D.</strong> <span class="badge">Sur Mesure</span></p><p>WhatsApp : +229 97 45 67 89 - Le 13-11-2026 a 09:12</p><p style="margin-top:8px;">Bonjour, je veux un boubou homme premium pour un mariage. Delai ?</p><p style="margin-top:12px;"><a class="btn" href="#">Repondre sur WhatsApp</a> <a class="btn-red" href="#" onclick="return confirm('Supprimer ce message ?')">Supprimer</a></p></div>
+</div>
+<div id="sec-creations" class="section-page"><h2>Mes Creations</h2><br><div class="grid">
+<div class="card"><img class="creation-img" src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600"><p><strong>Robe de Soiree Doree</strong> - Haute Couture</p><p>Broderie main, tissu premium.</p><p style="margin-top:8px;">Prix : 45.000 FCFA</p><p style="margin-top:10px;"><a class="btn-red" href="#" onclick="return confirm('Supprimer cette creation ?')">Supprimer</a></p></div>
+<div class="card"><img class="creation-img" src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600"><p><strong>Ensemble Bazin Riche</strong> - Traditionnel</p><p>Pour mariages et ceremonies.</p><p style="margin-top:8px;">Prix : 35.000 FCFA</p><p style="margin-top:10px;"><a class="btn-red" href="#" onclick="return confirm('Supprimer cette creation ?')">Supprimer</a></p></div>
+<div class="card"><img class="creation-img" src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600"><p><strong>Tailleur Moderne Femme</strong> - Sur Mesure</p><p>Coupe parfaite, tissu au choix.</p><p style="margin-top:8px;">Prix : 30.000 FCFA</p><p style="margin-top:10px;"><a class="btn-red" href="#" onclick="return confirm('Supprimer cette creation ?')">Supprimer</a></p></div>
+<div class="card"><img class="creation-img" src="https://images.unsplash.com/photo-1594552072238-b8a33785b8f1?w=600"><p><strong>Robe de Mariee Princesse</strong> - Haute Couture</p><p>Dentelle, traine longue.</p><p style="margin-top:8px;">Prix : Devis sur mesure</p><p style="margin-top:10px;"><a class="btn-red" href="#" onclick="return confirm('Supprimer cette creation ?')">Supprimer</a></p></div>
+</div></div>
+<div id="sec-ajouter" class="section-page"><h2>Ajouter une creation</h2><div class="form-box"><div class="success" id="msgAjout">Creation ajoutee avec succes ! (Apercu seulement)</div><form id="formAjout"><input type="text" placeholder="Titre : Ex : Robe de soiree doree" required><select required><option value="">Choisir une categorie</option><option>Haute Couture</option><option>Traditionnel</option><option>Sur Mesure</option></select><textarea rows="3" placeholder="Description"></textarea><input type="text" placeholder="Prix : Ex : 25.000 FCFA"><label>Photo de la creation :</label><input type="file" accept="image/*"><button class="btn" style="width:100%;">Ajouter la creation</button></form></div></div>
+</div></div>
+<script>
+function showPage(page){document.querySelectorAll('.section-page').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('sec-'+page).classList.add('active');document.querySelector('[data-page="'+page+'"]').classList.add('active');}
+document.getElementById('formLogin').addEventListener('submit',function(e){e.preventDefault();if(document.getElementById('mdp').value==='admin123'){document.getElementById('pageLogin').style.display='none';document.getElementById('pageAdmin').style.display='block';}else{document.getElementById('erreurLogin').style.display='block';}});
+function logout(){document.getElementById('pageAdmin').style.display='none';document.getElementById('pageLogin').style.display='flex';document.getElementById('mdp').value='';}
+document.getElementById('formAjout').addEventListener('submit',function(e){e.preventDefault();document.getElementById('msgAjout').style.display='block';this.reset();});
+</script>
+</body>
+</html>

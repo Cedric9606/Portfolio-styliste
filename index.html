@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Styliste - Couture d'Exception</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Jost',sans-serif;background:#FFFBF5;color:#1A1A1A;line-height:1.6}
+h1,h2,h3{font-family:'Playfair Display',serif}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{max-width:1150px;margin:auto;padding:0 20px}
+section{padding:70px 0}
+/* Top bar */
+.topbar{background:#C6A15B;color:#fff;text-align:center;padding:8px;font-size:13px;letter-spacing:0.5px}
+/* Header */
+header{background:rgba(17,17,17,0.98);color:#fff;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,0.2)}
+.nav{max-width:1150px;margin:auto;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Playfair Display',serif;font-size:24px;line-height:1}
+.logo span{color:#C6A15B;font-style:italic}
+.logo small{display:block;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:3px;color:#aaa;font-style:normal}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:14px;letter-spacing:0.5px;position:relative}
+.nav-links a:after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:#C6A15B;transition:0.3s}
+.nav-links a:hover:after{width:100%}
+.nav-cta{background:#C6A15B;color:#111!important;padding:9px 18px;border-radius:30px;font-weight:600}
+.hamburger{display:none;font-size:26px;cursor:pointer;background:none;border:none;color:#fff}
+@media(max-width:820px){.nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:#111;flex-direction:column;padding:20px;text-align:center}.nav-links.show{display:flex}.hamburger{display:block}}
+.btn{display:inline-block;background:linear-gradient(135deg,#D4AF6A,#C6A15B);color:#111;padding:14px 32px;border-radius:30px;font-weight:600;font-size:15px;border:none;cursor:pointer;box-shadow:0 8px 20px rgba(198,161,91,0.35);transition:0.3s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 25px rgba(198,161,91,0.45)}
+.btn-dark{background:#111;color:#fff;box-shadow:0 8px 20px rgba(0,0,0,0.3)}
+.btn-outline{background:transparent;border:1.5px solid #fff;color:#fff;box-shadow:none}
+/* Hero */
+.hero{background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.65)),url('https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=1400');background-size:cover;background-position:center;color:#fff;text-align:center;padding:100px 20px 110px;position:relative}
+.hero-badge{display:inline-block;background:rgba(255,255,255,0.18);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);padding:7px 18px;border-radius:30px;font-size:13px;letter-spacing:1px;margin-bottom:20px}
+.hero h1{font-size:52px;line-height:1.1}
+.hero h1 em{color:#E8C87A;font-style:italic}
+.hero p{max-width:640px;margin:18px auto 28px;color:#eee;font-size:17px;font-weight:300}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-stats{display:flex;gap:30px;justify-content:center;margin-top:35px;flex-wrap:wrap}
+.hero-stats div{text-align:center}
+.hero-stats b{font-size:26px;color:#E8C87A;display:block;font-family:'Playfair Display',serif}
+.hero-stats span{font-size:12px;letter-spacing:1px;color:#ddd}
+@media(max-width:700px){.hero h1{font-size:34px}.hero{padding:70px 20px}}
+/* Titles */
+.section-title{text-align:center;font-size:36px;line-height:1.2}
+.section-title em{color:#C6A15B;font-style:italic}
+.section-sub{text-align:center;color:#777;margin:12px auto 35px;max-width:600px}
+.divider{width:70px;height:3px;background:#C6A15B;margin:14px auto;border-radius:10px}
+/* Collections */
+.filter-bar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+.filter-btn{padding:10px 22px;border-radius:30px;border:1px solid #ddd;background:#fff;cursor:pointer;font-family:inherit;font-weight:500;transition:0.2s}
+.filter-btn.active{background:#111;color:#E8C87A;border-color:#111}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:#fff;border-radius:20px;overflow:hidden;border:1px solid #eee;box-shadow:0 8px 25px rgba(0,0,0,0.06);transition:0.3s;cursor:pointer}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 35px rgba(0,0,0,0.12)}
+.card-img{position:relative;overflow:hidden}
+.card img{width:100%;height:300px;object-fit:cover;transition:0.5s}
+.card:hover img{transform:scale(1.07)}
+.card-price{position:absolute;top:14px;right:14px;background:#111;color:#E8C87A;padding:6px 14px;border-radius:30px;font-size:13px;font-weight:600}
+.card-body{padding:18px}
+.card-body h3{font-size:19px}
+.card-body p{color:#777;font-size:14px;margin:7px 0 12px}
+.card-link{color:#C6A15B;font-weight:600;font-size:14px}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:550px){.grid{grid-template-columns:1fr}}
+/* Services */
+.services-bg{background:linear-gradient(180deg,#F9F5EE,#FFF8EC)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.service-card{background:#fff;padding:32px 24px;border-radius:20px;text-align:center;border:1px solid #eee;box-shadow:0 8px 20px rgba(0,0,0,0.05);transition:0.3s;position:relative;overflow:hidden}
+.service-card:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#C6A15B,#E8C87A)}
+.service-card:hover{transform:translateY(-4px)}
+.service-card .icon-box{width:68px;height:68px;background:#F9F5EE;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.service-card svg{width:32px;height:32px;color:#C6A15B}
+.service-card h3{font-size:20px;margin-bottom:8px}
+.service-card p{color:#777;font-size:14px;margin-bottom:14px}
+.service-card a{color:#C6A15B;font-weight:600;font-size:14px}
+@media(max-width:800px){.services-grid{grid-template-columns:1fr}}
+/* Apropos */
+.apropos-grid{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
+.apropos-img{position:relative}
+.apropos-img img{border-radius:22px;height:460px;width:100%;object-fit:cover;box-shadow:0 20px 40px rgba(0,0,0,0.15)}
+.apropos-badge{position:absolute;bottom:20px;left:20px;background:#fff;padding:14px 20px;border-radius:14px;box-shadow:0 10px 25px rgba(0,0,0,0.15);display:flex;gap:12px;align-items:center}
+.apropos-badge b{font-size:28px;color:#C6A15B;line-height:1}
+.apropos-grid h2{font-size:34px;margin-bottom:12px}
+.apropos-grid h2 em{color:#C6A15B}
+.apropos-grid p{color:#666;margin-bottom:12px}
+.check-list{list-style:none;margin:15px 0}
+.check-list li{padding:6px 0;color:#444;font-size:15px}
+.check-list li:before{content:"✓ ";color:#C6A15B;font-weight:bold}
+@media(max-width:800px){.apropos-grid{grid-template-columns:1fr}}
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:25px}
+.contact-info{background:#111;color:#fff;padding:30px;border-radius:20px;position:relative;overflow:hidden}
+.contact-info:after{content:"";position:absolute;bottom:-40px;right:-40px;width:150px;height:150px;background:#C6A15B;border-radius:50%;opacity:0.25}
+.contact-info h3{font-size:22px;margin-bottom:16px}
+.contact-info p{color:#ddd;font-size:14px;margin-bottom:12px;position:relative;z-index:1}
+.contact-info .big{font-size:18px;color:#E8C87A;font-weight:600}
+.contact-form{background:#fff;padding:28px;border-radius:20px;border:1px solid #eee;box-shadow:0 10px 25px rgba(0,0,0,0.06)}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;padding:13px 14px;border:1.5px solid #eee;border-radius:12px;margin-bottom:13px;font-family:inherit;background:#FFFBF5}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{outline:none;border-color:#C6A15B}
+.success{background:#d4edda;color:#155724;padding:12px;border-radius:10px;margin-bottom:12px;display:none}
+@media(max-width:800px){.contact-grid{grid-template-columns:1fr}}
+/* CTA Final */
+.cta{background:#111;color:#fff;text-align:center;padding:60px 20px}
+.cta h2{font-size:32px}
+.cta h2 em{color:#E8C87A}
+.cta p{color:#ccc;margin:12px auto 22px;max-width:520px}
+footer{background:#0A0A0A;color:#999;text-align:center;padding:28px 20px;font-size:13px}
+footer a{color:#C6A15B}
+</style>
+</head>
+<body>
+<div class="topbar">Livraison rapide a Cotonou &amp; Porto-Novo - Commande sur WhatsApp - Delai 3 a 7 jours</div>
+<header><div class="nav"><div class="logo">Portfolio <span>Styliste</span><small>COUTURE • BAZIN • SUR MESURE</small></div><button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('show')">☰</button><ul class="nav-links" id="navLinks"><li><a href="#accueil">Accueil</a></li><li><a href="#collections">Collections</a></li><li><a href="#services">Services</a></li><li><a href="#apropos">A Propos</a></li><li><a href="#contact" class="nav-cta">Commander</a></li></ul></div></header>
+
+<section class="hero" id="accueil">
+  <span class="hero-badge">NOUVELLE COLLECTION 2026 - DISPONIBLE</span>
+  <h1>Couture d'Exception,<br><em>Style &amp; Elegance</em></h1>
+  <p>Robes de soiree, Bazin riche, tenues sur mesure. Des creations uniques pour sublimer chaque femme, a Cotonou et partout au Benin.</p>
+  <div class="hero-btns"><a href="#collections" class="btn">Voir mes Creations</a><a href="#contact" class="btn btn-dark">Commander sur WhatsApp</a></div>
+  <div class="hero-stats"><div><b>120+</b><span>CLIENTES SATISFAITES</span></div><div><b>5 ans</b><span>D'EXPERIENCE</span></div><div><b>100%</b><span>FAIT MAIN</span></div></div>
+</section>
+
+<section id="collections"><div class="container">
+  <h2 class="section-title">Mes <em>Collections</em></h2><div class="divider"></div><p class="section-sub">Chaque piece est confectionnee avec soin, a la main, avec des tissus de qualite premium.</p>
+  <div class="filter-bar"><button class="filter-btn active" onclick="filterCat('all',this)">Tout voir</button><button class="filter-btn" onclick="filterCat('couture',this)">Haute Couture</button><button class="filter-btn" onclick="filterCat('traditionnel',this)">Traditionnel</button><button class="filter-btn" onclick="filterCat('surmesure',this)">Sur Mesure</button></div>
+  <div class="grid" id="gridCollections">
+    <div class="card" data-cat="couture"><div class="card-img"><img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=700"><span class="card-price">45.000 FCFA</span></div><div class="card-body"><span style="background:#F9F5EE;padding:5px 12px;border-radius:20px;font-size:12px;">Haute Couture</span><h3 style="margin-top:10px;">Robe de Soiree Doree</h3><p>Broderie main, tissu premium, coupe princesse qui sublime la silhouette.</p><a class="card-link" href="#contact">Commander cette tenue →</a></div></div>
+    <div class="card" data-cat="traditionnel"><div class="card-img"><img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=700"><span class="card-price">35.000 FCFA</span></div><div class="card-body"><span style="background:#F9F5EE;padding:5px 12px;border-radius:20px;font-size:12px;">Traditionnel</span><h3 style="margin-top:10px;">Ensemble Bazin Riche</h3><p>Pour mariages et ceremonies, couleurs et broderies au choix.</p><a class="card-link" href="#contact">Commander cette tenue →</a></div></div>
+    <div class="card" data-cat="surmesure"><div class="card-img"><img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=700"><span class="card-price">30.000 FCFA</span></div><div class="card-body"><span style="background:#F9F5EE;padding:5px 12px;border-radius:20px;font-size:12px;">Sur Mesure</span><h3 style="margin-top:10px;">Tailleur Moderne Femme</h3><p>Coupe parfaite, tissu au choix, finition soignee pour le bureau ou les sorties.</p><a class="card-link" href="#contact">Commander cette tenue →</a></div></div>
+    <div class="card" data-cat="couture"><div class="card-img"><img src="https://images.unsplash.com/photo-1594552072238-b8a33785b8f1?w=700"><span class="card-price">Devis</span></div><div class="card-body"><span style="background:#F9F5EE;padding:5px 12px;border-radius:20px;font-size:12px;">Haute Couture</span><h3 style="margin-top:10px;">Robe de Mariee Princesse</h3><p>Dentelle, traine longue, voile offert. Le jour J merite le meilleur.</p><a class="card-link" href="#contact">Commander cette tenue →</a></div></div>
+    <div class="card" data-cat="traditionnel"><div class="card-img"><img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700"><span class="card-price">28.000 FCFA</span></div><div class="card-body"><span style="background:#F9F5EE;padding:5px 12px;border-radius:20px;font-size:12px;">Traditionnel</span><h3 style="margin-top:10px;">Boubou Homme Premium</h3><p>Broderie riche, tissu Bazin de qualite, coupe royale.</p><a class="card-link" href="#contact">Commander cette tenue →</a></div></div>
+    <div class="card" data-cat="surmesure"><div class="card-img"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=700"><span class="card-price">25.000 FCFA</span></div><div class="card-body"><span style="background:#F9F5EE;padding:5px 12px;border-radius:20px;font-size:12px;">Sur Mesure</span><h3 style="margin-top:10px;">Robe Cocktail Elegante</h3><p>Pour anniversaires, sorties et evenements chics.</p><a class="card-link" href="#contact">Commander cette tenue →</a></div></div>
+  </div>
+</div></section>
+
+<section class="services-bg" id="services"><div class="container">
+  <h2 class="section-title">Mes <em>Services</em></h2><div class="divider"></div><p class="section-sub">Un accompagnement complet, de l'idee a la livraison.</p>
+  <div class="services-grid">
+    <div class="service-card"><div class="icon-box"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21.2l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></div><h3>Haute Couture</h3><p>Robes de soiree, robes de mariee, pieces uniques realisees a la main avec des finitions haut de gamme.</p><a href="#contact">Demander un devis →</a></div>
+    <div class="service-card"><div class="icon-box"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2l2.4 5.2 5.6.7-4.1 3.9 1 5.5L12 14.6 7.1 17.3l1-5.5L4 7.9l5.6-.7z"/></svg></div><h3>Traditionnel</h3><p>Bazin riche, Wax, ensembles pour mariages et ceremonies traditionnelles. La richesse de nos tissus.</p><a href="#contact">Demander un devis →</a></div>
+    <div class="service-card"><div class="icon-box"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 20h16M6 20V8l6-4 6 4v12M9 20v-6h6v6"/></svg></div><h3>Sur Mesure</h3><p>Prise de mesures, essayages, retouches. Ta tenue ajustee parfaitement a ton corps et a ton gout.</p><a href="#contact">Demander un devis →</a></div>
+  </div>
+</div></section>
+
+<section id="apropos"><div class="container"><div class="apropos-grid">
+  <div class="apropos-img"><img src="https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=800"><div class="apropos-badge"><b>5+</b><span>Annees<br>d'experience</span></div></div>
+  <div><h2>A Propos de <em>la Styliste</em></h2><p>Bonjour, je suis styliste et couturiere basee a Abomey-Calavi, Cotonou. Depuis plusieurs annees, je cree des tenues qui melent elegance moderne et richesse de nos tissus africains.</p><p>Chaque cliente est unique. Je prends le temps d'ecouter, de conseiller, et de creer une tenue qui te ressemble vraiment.</p><ul class="check-list"><li>Tissus de qualite verifiee avant couture</li><li>Essayage et retouches inclus</li><li>Livraison rapide a Cotonou et Porto-Novo</li></ul><a href="#contact" class="btn">Discuter de mon projet</a></div>
+</div></div></section>
+
+<section id="contact" style="background:#F9F5EE;"><div class="container">
+  <h2 class="section-title">Me <em>Contacter</em></h2><div class="divider"></div><p class="section-sub">Remplis le formulaire, je te reponds rapidement sur WhatsApp.</p>
+  <div class="contact-grid">
+    <div class="contact-info"><h3>Informations</h3><p><strong>Adresse :</strong><br>Abomey-Calavi, Atlantique, Benin</p><p><strong>WhatsApp :</strong><br><span class="big">+229 00 00 00 00</span></p><p><strong>Horaires :</strong><br>Lun - Sam : 8h a 19h</p><p><strong>Livraison :</strong><br>Cotonou, Porto-Novo, partout au Benin</p><p style="margin-top:18px;background:rgba(255,255,255,0.1);padding:12px;border-radius:10px;">Delai moyen : 3 a 7 jours selon la tenue. Devis gratuit.</p></div>
+    <div class="contact-form"><div class="success" id="msgSuccess">Merci ! Ton message a ete envoye. Je te reponds bientot sur WhatsApp. (Apercu GitHub)</div><form id="formContact"><input type="text" placeholder="Ton nom complet" required><input type="text" placeholder="Ton numero WhatsApp : Ex : +229 96 00 00 00" required><select required><option value="">Quel service veux-tu ?</option><option>Robe de soiree</option><option>Ensemble Bazin</option><option>Sur Mesure</option><option>Robe de mariee</option><option>Autre</option></select><textarea rows="4" placeholder="Decris ta tenue : couleur, taille, date de l'evenement, budget..." required></textarea><button class="btn" style="width:100%;">Envoyer ma demande</button></form></div>
+  </div>
+</div></section>
+
+<div class="cta"><h2>Prete a briller avec une tenue <em>unique</em> ?</h2><p>Envoie-moi ton idee, je te fais un devis gratuit en moins de 24h.</p><a href="#contact" class="btn">Commander maintenant</a></div>
+<footer><p><strong style="color:#fff;">Portfolio Styliste</strong> - Couture, Bazin, Sur Mesure - Abomey-Calavi, Benin</p><p style="margin-top:8px;"><a href="#accueil">Accueil</a> | <a href="#collections">Collections</a> | <a href="#contact">Contact</a></p><p style="margin-top:8px;">© 2026 Portfolio Styliste - Tous droits reserves</p></footer>
+<script>
+function filterCat(cat,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('#gridCollections .card').forEach(c=>{c.style.display=(cat==='all'||c.dataset.cat===cat)?'block':'none';});}
+document.getElementById('formContact').addEventListener('submit',function(e){e.preventDefault();document.getElementById('msgSuccess').style.display='block';this.reset();});
+</script>
+</body>
+</html>
